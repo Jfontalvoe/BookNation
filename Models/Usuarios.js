@@ -5,7 +5,7 @@ const usuariosSchema = new mongoose.Schema(
   {
     nombre: { type: String, required: true },
     cedula: { type: String, required: true, unique: true },
-    correo: { type: String, required: true , unique: true},
+    correo: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     direccion: { type: String, required: true },
     activo: { type: Boolean, default: true },

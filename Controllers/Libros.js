@@ -1,12 +1,13 @@
 const jwt = require("jsonwebtoken");
 const dotend = require("dotenv");
 dotend.config();
-const { 
-    readLibroIDMongo, 
-    readLibrosMongo, 
-    createLibroMongo,
-    updateLibroMongo,
-    deleteLibroMongo } = require("../Actions/Libros");
+const {
+  readLibroIDMongo,
+  readLibrosMongo,
+  createLibroMongo,
+  updateLibroMongo,
+  deleteLibroMongo,
+} = require("../Actions/Libros");
 const _ = require("lodash");
 
 async function readLibroID(data) {
@@ -18,11 +19,11 @@ async function readLibroID(data) {
 }
 
 async function readLibros(data) {
-    const busqueda = await readLibrosMongo(data);
-    if (busqueda.length === 0) {
-        throw new Error("No se encontraton libros");
-    }
-    return busqueda;
+  const busqueda = await readLibrosMongo(data);
+  if (busqueda.length === 0) {
+    throw new Error("No se encontraton libros");
+  }
+  return busqueda;
 }
 
 async function createLibro(data, token) {
@@ -45,7 +46,6 @@ async function updateLibro(idLibro, data, token) {
 }
 
 async function removeLibro(data, token) {
-
   const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
   const idUsuario = decodedToken._id;
   const infLibro = await readLibroID(data);
@@ -60,10 +60,10 @@ async function removeLibro(data, token) {
   return eliminacion;
 }
 
-module.exports = { 
-    readLibroID, 
-    readLibros, 
-    createLibro,
-    updateLibro,
-    removeLibro
+module.exports = {
+  readLibroID,
+  readLibros,
+  createLibro,
+  updateLibro,
+  removeLibro,
 };
